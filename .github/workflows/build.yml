@@ -26,10 +26,10 @@ jobs:
             zlib1g-dev libncurses5-dev libncursesw5-dev \
             cmake libffi-dev libssl-dev build-essential ccache
 
-      - name: Instalar Buildozer e Cython
+      - name: Instalar Cython compatível e Buildozer
         run: |
           pip install --upgrade pip
-          pip install --upgrade buildozer cython
+          pip install "cython<3.0" buildozer
 
       - name: Limpar build anterior e compilar o APK
         run: |
