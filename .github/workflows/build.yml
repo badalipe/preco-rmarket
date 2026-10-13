@@ -1,0 +1,42 @@
+name: Compilar APK Android
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Aceder ao código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar ambiente Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependências do sistema Linux
+        run: |
+          sudo apt update
+          sudo apt install -y \
+            git zip unzip openjdk-17-jdk autoconf libtool pkg-config \
+            zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 \
+            cmake libffi-dev libssl-dev build-essential ccache
+
+      - name: Instalar Buildozer e Cython
+        run: |
+          pip install --upgrade pip
+          pip install --upgrade buildozer cython
+
+      - name: Compilar o APK com o Buildozer
+        run: |
+          buildozer -v android debug
+
+      - name: Guardar o APK gerado (Artifacts)
+        uses: actions/upload-artifact@v4
+        with:
+          name: meu-app-apk
+          path: bin/*.apk
