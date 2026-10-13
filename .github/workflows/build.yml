@@ -31,7 +31,7 @@ jobs:
           pip install --upgrade pip
           pip install --upgrade buildozer cython
 
-      - name: Compilar o APK com o Buildozer
+      - name: Compilar o APK com o Buildozer (Modo Debug)
         run: |
           yes | buildozer -v android debug
 
