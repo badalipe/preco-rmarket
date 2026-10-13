@@ -15,8 +15,10 @@ source.dir = .
 # (list) Source file extensions to include (let it empty to include all files)
 source.exts = py,png,jpg,kv,atlas
 
+# (str) Application versioning (added this missing line)
+version = 0.1
+
 # (list) Application requirements
-# comma separated e.g. requirements = sqlite3,kivy
 requirements = python3,kivy,requests,beautifulsoup4,pyjnius
 
 # (str) Supported orientations
@@ -39,9 +41,6 @@ android.sdk = 30
 
 # (str) Android NDK version to use (v25b is required for Pyjnius compatibility)
 android.ndk = 25b
-
-# (bool) Skip target API check
-#android.skip_api_check = False
 
 # (bool) Automatically accept SDK license
 android.accept_sdk_license = True
